@@ -1,5 +1,9 @@
+.main_content {
+    padding: 2%;
+}
+
 .side_bar {
     border-left: 1px solid gray;
     height: 100vh;
-    padding: 5%;
+    padding: 2%;
 }

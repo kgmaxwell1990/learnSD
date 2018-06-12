@@ -3,22 +3,28 @@
 {% load bootstrap_tags %}
 
 {% block content %}
-<div class="container">
     <div class="row">
         {% if user.is_authenticated %}
-        <div class="col-sm-8">
-            <h1>Hello {{user}}</h1>
+        <div class="col-sm-9 main_content">
+            {% if user.first_name %}
+                <h1>Hello {{user.first_name}}</h1>
+            {% else %}
+                <h1>Hello {{user}}</h1>
+            {% endif %}
             <p>Progress bar</p>
         </div>
-        <div class="col-sm-4 side_bar">
-            <p>Some side content</p>
+        <div class="col-sm-3 side_bar">
+            <h3>Your Stats</h3>
+            <p>Days since starting the course: <span>14</span><p>
+            <p>Days until free trial ends: <span>16</span><p>
         </div>
         {% else %}
-        <div class="col-sm-8">
+        <div class="col-sm-9 main_content">
             <h1>This is our course</h1>
+            <p>30 days free</p>
             
         </div>
-        <div class="col-sm-4 side_bar">
+        <div class="col-sm-3 side_bar">
             <h2>Register for Free!</h2>
             <form role="form" method="post" action="{% url 'register' %}">
             {% csrf_token %} {{ reg_form | as_bootstrap }}
@@ -29,7 +35,6 @@
         </div>
         {% endif %}
     </div>
-</div>
 
 
 {% endblock content %}
