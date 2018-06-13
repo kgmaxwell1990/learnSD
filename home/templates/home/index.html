@@ -7,20 +7,33 @@
         {% if user.is_authenticated %}
         <div class="col-sm-9 main_content">
             {% if user.first_name %}
-                <h1>Hello {{user.first_name}}</h1>
+                <h1>Hi {{user.first_name}}!</h1>
             {% else %}
-                <h1>Hello {{user}}</h1>
+                <h1>Hi {{user}}!</h1>
             {% endif %}
+
             <p>Progress bar</p>
         </div>
         <div class="col-sm-3 side_bar">
             <h3>Your Stats</h3>
-            <p>Days since starting the course: <span>14</span><p>
-            <p>Days until free trial ends: <span>16</span><p>
+            <p>Member since {{user.date_joined}}</p>
+            {% if user.profile.free_trial %}
+                <p>You are currently on your free trial</p>
+                <p>Days left of Free Trial: <span>4</span><p>
+                <p><a href="#">Sign up for Subscription</a></p>
+            {% endif %}
+            {% if user.profile.paying_subscription %}
+                <p> You are paying the Monthly subscription </p>
+                <p> Monthly Subscription: <span>€22 </span> per month<p>
+            {% endif %}
+            {% if not user.profile.free_trial and not user.profile.paying_subscription%}
+                <p>Your free Trial has ended<br> Please <a href="#">Sign up for a Subscription</a> to continue learning</p>
+            {% endif %}
+            
         </div>
         {% else %}
         <div class="col-sm-9 main_content">
-            <h1>This is our course</h1>
+            <h1>Course Details</h1>
             <p>30 days free</p>
             
         </div>

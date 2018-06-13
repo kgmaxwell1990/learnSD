@@ -8,6 +8,8 @@ from django.utils import timezone
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     stripe_id = models.CharField(max_length=40, default='', blank=True)
+    free_trial = models.BooleanField(default=True, blank=True)
+    paying_subscription = models.BooleanField(default=False, blank=True)
     progress = models.IntegerField(default=0)
 
     @property

@@ -22,5 +22,6 @@ class Lessons(models.Model):
     description = models.TextField()
     vid_link = models.CharField(max_length=256, blank=False, default='')
     lesson_number = models.IntegerField(default="1", blank=False)
+    free = models.BooleanField(default=False, blank=True)
     def __str__(self):
         return self.name + "-" + str(self.lesson_number)
